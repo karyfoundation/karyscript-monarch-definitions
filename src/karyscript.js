@@ -16,7 +16,6 @@ return {
 
   // define our own brackets as '<' and '>' do not match in javascript
   brackets: [
-    ['(',')','bracket.parenthesis'],
     ['{','}','bracket.curly'],
     ['[',']','bracket.square']
   ],
@@ -38,6 +37,9 @@ return {
                                    '@default': 'identifier' } }],
       [/[A-Z][\w\$]*/, 'type.identifier' ],  // to show class names nicely
 
+      // holders
+      [/@[a-z_$][\w$]*/, 'string.identifier'],
+
       // whitespace
       { include: '@whitespace' },
 
@@ -46,7 +48,7 @@ return {
         token: 'regexp.slash', bracket: '@open', next: '@regexp'}],
 
       // delimeters
-      [/[{}()\[\]]/, '@brackets'],
+      [/[{}\[\]]/, '@brackets'],
       [/[,\/]/, 'delimiter'],
 
       // numbers
