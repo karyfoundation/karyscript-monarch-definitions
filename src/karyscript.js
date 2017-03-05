@@ -60,8 +60,8 @@ return {
       [/\d+/, 'number'],
 
       // strings: recover on non-terminated strings
-      [/"([^"\\]|\\.)*$/, 'string.invalid' ],  // non-teminated string
-      [/'([^'\\]|\\.)*$/, 'string.invalid' ],  // non-teminated string
+      [/"([^"\\]|\\.)*$/, 'string.invalid' ],  // non-terminated string
+      [/'([^'\\]|\\.)*$/, 'string.invalid' ],  // non-terminated string
       [/"/,  'string', '@string."' ],
       [/'/,  'string', '@string.\'' ],
     ],
