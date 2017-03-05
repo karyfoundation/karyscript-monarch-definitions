@@ -43,7 +43,7 @@ return {
       // whitespace
       { include: '@whitespace' },
 
-      // regular expression: ensure it is terminated before beginning (otherwise it is an opeator)
+      // regular expression: ensure it is terminated before beginning (otherwise it is an operator)
       [/\/(?=([^\\\/]|\\.)+\/)[gmiys]*/, {
         token: 'regexp.slash', bracket: '@open', next: '@regexp'}],
 
