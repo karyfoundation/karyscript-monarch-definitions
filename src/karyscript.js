@@ -47,7 +47,7 @@ return {
       [/\/(?=([^\\\/]|\\.)+\/)[gmiys]*/, {
         token: 'regexp.slash', bracket: '@open', next: '@regexp'}],
 
-      // delimeters
+      // delimiters
       [/[{}\[\]]/, '@brackets'],
       [/[,\/]/, 'delimiter'],
 
