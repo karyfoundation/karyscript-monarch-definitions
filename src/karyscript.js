@@ -5,9 +5,9 @@ return {
   tokenPostfix: '.k',
 
   keywords: [
-    'end', 'def', 'unless', 'also', 'and', 'or', 'not', 'ufo', 'sub', 'mul', 'div', 'sum',
+     'end', 'def', 'unless', 'also', 'and', 'or', 'not', 'ufo', 'sub', 'mul', 'div', 'sum',
     'pow', 'mod', 'on', 'off', 'true', 'false', 'yes', 'no', 'not', 'cat', 'print', 'nan',
-    'fix', 'use', 'up', 'down', 'to', 'via', 'hold', 'clone', 'zone', 'when', 'is', 'isnt',
+    'fix', 'use', 'up', 'down', 'to', 'via', 'clone', 'zone', 'when', 'is', 'isnt',
     'out', 'let', 'var', 'const', 'class', 'function', 'import', 'from', 'for', 'of', 'in',
     'while', 'continue', 'debugger', 'delete', 'do', 'export', 'extends', 'if', 'else',
     'switch', 'case', 'default', 'try', 'catch', 'finally', 'NaN', 'null', 'undefined',
@@ -79,12 +79,26 @@ return {
     ],
 
     string: [
-      [/[^\\"']+/, 'string'],
+      [/[^\\"'#]+/, 'string'],
+      [/#/,        'keyword.bracket.parenthesis', '@interpolated' ],
       [/@escapes/, 'string.escape'],
       [/\\./,      'string.escape.invalid'],
       [/["']/,     { cases: { '$#==$S2' : { token: 'string', next: '@pop' },
                               '@default': 'string' }} ],
     ],
+
+
+    // interpolated sequence
+    interpolated: [
+      [/[\(]/, { token: 'bracket.parenthesis', bracket: '@open', switchTo: '@interpolated_compound' }],
+    ],
+
+    // any code
+    interpolated_compound: [
+      [/[\)]/, { token: 'bracket.parenthesis', bracket: '@close', next: '@pop'} ],
+      { include: '@root' },
+    ],
+
 
     // We match regular expression quite precisely
     regexp: [
