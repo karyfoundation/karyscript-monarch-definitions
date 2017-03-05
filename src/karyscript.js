@@ -33,12 +33,18 @@ return {
 
   tokenizer: {
     root: [
-      [/[a-z_$][\w$]*/, { cases: { '@keywords' : 'keyword',
+
+      // address
+      [/[a-z_$][\w\-$]*(\/[a-z_$][\w-$]*)+/, 'type'],
+
+      // identifier
+      [/[a-z_$][\w-$]*/, { cases: { '@keywords' : 'keyword',
                                    '@default': 'identifier' } }],
-      [/[A-Z][\w\$]*/, 'type.identifier' ],  // to show class names nicely
+      [/[A-Z][\w-\$]*/, 'type.identifier' ],  // to show class names nicely
 
       // holders
-      [/@[a-z_$][\w$]*/, 'string.identifier'],
+      [/@[a-z_$][\w-$]*/, 'string.identifier'],
+
 
       // whitespace
       { include: '@whitespace' },
